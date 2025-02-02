@@ -1,0 +1,91 @@
+﻿@model CadastroDeClientes.Presentation.Models.ViewModel.ClienteViewModel
+
+@{
+    ViewBag.Title = "Detalhes do Cliente";
+}
+
+<h2>Detalhes do Cliente</h2>
+
+@using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { @class = "form-inline" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <input type="submit" value="Logout" class="btn btn-danger" />
+    </div>
+}
+
+<div>
+    <h4>Cliente</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Logotipo)
+        </dt>
+        <dd>
+            @if (Model.Logotipo != null && Model.Logotipo.Length > 0)
+            {
+                string base64Logotipo = Convert.ToBase64String(Model.Logotipo);
+                <img src="data:image/png;base64,@base64Logotipo" alt="Logotipo do Cliente" style="max-width:150px;" />
+            }
+            else
+            {
+                <span>Sem logotipo</span>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Logradouro.Endereco)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Logradouro.Endereco)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Logradouro.Cep)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Logradouro.Cep)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Logradouro.Bairro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Logradouro.Bairro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Logradouro.Numero)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Logradouro.Numero)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Logradouro.Complemento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Logradouro.Complemento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Logradouro.Cidade)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Logradouro.Cidade)
+        </dd>
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Voltar para a Lista", "Index", null, new { @class = "btn btn-default" })
+</p>

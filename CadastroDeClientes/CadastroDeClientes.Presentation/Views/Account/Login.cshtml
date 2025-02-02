@@ -1,0 +1,40 @@
+﻿@model CadastroDeClientes.Presentation.Models.ViewModel.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+@Html.AntiForgeryToken()
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4>Login</h4>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, "Email")
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Digite seu email" })
+                            @Html.ValidationMessageFor(model => model.Email, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group mt-3">
+                            @Html.LabelFor(model => model.Senha, "Senha")
+                            @Html.PasswordFor(model => model.Senha, new { @class = "form-control", placeholder = "Digite sua senha" })
+                            @Html.ValidationMessageFor(model => model.Senha, null, new { @class = "text-danger" })
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 mt-4">Entrar</button>
+                    }
+
+                    <div class="mt-3 text-center">
+                        <p>Não tem uma conta? <a href="@Url.Action("Create", "Account")">Cadastre-se aqui</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

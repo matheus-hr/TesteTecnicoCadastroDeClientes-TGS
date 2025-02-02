@@ -1,0 +1,61 @@
+﻿@model IEnumerable<CadastroDeClientes.Presentation.Models.ViewModel.ClienteViewModel>
+
+@{
+    ViewBag.Title = "Clientes";
+}
+
+<h2>Clientes</h2>
+
+@using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { @class = "form-inline" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <input type="submit" value="Logout" class="btn btn-danger" />
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Criar Novo Cliente", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cliente in Model)
+        {
+            <tr>
+                <td>@cliente.Nome</td>
+                <td>@cliente.Email</td>
+                <td>
+                    @Html.ActionLink("Detalhes", "Details", new { id = cliente.Id }) |
+                    @Html.ActionLink("Editar", "Edit", new { id = cliente.Id }) |
+                    @using (Html.BeginForm("Delete", "Home", new { id = cliente.Id }, FormMethod.Post, false, new { @onsubmit = "return confirm('Deseja realmente excluir este cliente?');" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="submit" value="Excluir" />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

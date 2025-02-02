@@ -1,0 +1,69 @@
+﻿@model CadastroDeClientes.Presentation.Models.ViewModel.ClienteViewModel
+
+@{
+    ViewBag.Title = "Criar Cliente";
+}
+
+<h2>Criar Cliente</h2>
+
+@using (Html.BeginForm("Create", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nome, "Nome")
+        @Html.TextBoxFor(model => model.Nome, new { @class = "form-control", placeholder = "Digite o nome" })
+        @Html.ValidationMessageFor(model => model.Nome)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, "Email")
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Digite o email" })
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+
+    <div class="form-group">
+        <label for="logotipo">Logotipo</label>
+        <input type="file" name="logotipo" id="logotipo" class="form-control" />
+    </div>
+
+    <h3>Logradouro</h3>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Logradouro.Endereco, "Endereço")
+        @Html.TextBoxFor(model => model.Logradouro.Endereco, new { @class = "form-control", placeholder = "Digite o endereço" })
+        @Html.ValidationMessageFor(model => model.Logradouro.Endereco)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Logradouro.Cep, "CEP")
+        @Html.TextBoxFor(model => model.Logradouro.Cep, new { @class = "form-control", placeholder = "Digite o CEP" })
+        @Html.ValidationMessageFor(model => model.Logradouro.Cep)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Logradouro.Bairro, "Bairro")
+        @Html.TextBoxFor(model => model.Logradouro.Bairro, new { @class = "form-control", placeholder = "Digite o bairro" })
+        @Html.ValidationMessageFor(model => model.Logradouro.Bairro)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Logradouro.Numero, "Número")
+        @Html.TextBoxFor(model => model.Logradouro.Numero, new { @class = "form-control", placeholder = "Digite o número" })
+        @Html.ValidationMessageFor(model => model.Logradouro.Numero)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Logradouro.Complemento, "Complemento")
+        @Html.TextBoxFor(model => model.Logradouro.Complemento, new { @class = "form-control", placeholder = "Digite o complemento" })
+        @Html.ValidationMessageFor(model => model.Logradouro.Complemento)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Logradouro.Cidade, "Cidade")
+        @Html.TextBoxFor(model => model.Logradouro.Cidade, new { @class = "form-control", placeholder = "Digite a cidade" })
+        @Html.ValidationMessageFor(model => model.Logradouro.Cidade)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Criar Cliente</button>
+}

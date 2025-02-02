@@ -1,0 +1,53 @@
+﻿@model CadastroDeClientes.Presentation.Models.ViewModel.CadastroUsuarioViewModel
+
+@{
+    ViewBag.Title = "Cadastrar Usuário";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4>Cadastrar Usuário</h4>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Create", "Account", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Nome, "Nome")
+                            @Html.TextBoxFor(model => model.Nome, new { @class = "form-control", placeholder = "Digite seu nome" })
+                            @Html.ValidationMessageFor(model => model.Nome, null, new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group mt-3">
+                            @Html.LabelFor(model => model.Email, "Email")
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Digite seu email" })
+                            @Html.ValidationMessageFor(model => model.Email, null, new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group mt-3">
+                            @Html.LabelFor(model => model.Senha, "Senha")
+                            @Html.PasswordFor(model => model.Senha, new { @class = "form-control", placeholder = "Digite sua senha" })
+                            @Html.ValidationMessageFor(model => model.Senha, null, new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group mt-3">
+                            @Html.LabelFor(model => model.Role, "Role")
+                            @Html.DropDownListFor(model => model.Role, new List<SelectListItem>
+                        {
+                        new SelectListItem { Text = "Funcionário", Value = "Funcionario" },
+                        new SelectListItem { Text = "Gerente", Value = "Gerente" }
+                        }, "Selecione uma Role", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Role, null, new { @class = "text-danger" })
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 mt-4">Cadastrar</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
